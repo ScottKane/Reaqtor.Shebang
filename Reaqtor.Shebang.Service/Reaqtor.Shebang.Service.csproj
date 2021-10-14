@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.1</TargetFrameworks>
+	<LangVersion>latest</LangVersion>
+	<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+	<GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+    <Description>Provides a reference implementation of a Reaqtor service hosting the query engine and the Reaqtive query operators.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+	  <PackageReference Include="Reaqtive.Core" Version="1.0.0-beta.1" />
+    <PackageReference Include="Reaqtive.Interfaces" Version="1.0.0-beta.1" />
+    <PackageReference Include="Reaqtive.Linq" Version="1.0.0-beta.1" />
+    <PackageReference Include="Reaqtive.Scheduler" Version="1.0.0-beta.1" />
+    <PackageReference Include="Reaqtor.Client" Version="1.0.0-beta.1" />
+    <PackageReference Include="Reaqtor.QueryEngine" Version="1.0.0-beta.1" />
+    <PackageReference Include="Reaqtor.QueryEngine.Serialization.DataModel" Version="1.0.0-beta.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Reaqtor.Shebang.Client\Reaqtor.Shebang.Client.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Linq\QueryOperators.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>QueryOperators.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Linq\QueryOperators.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>QueryOperators.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+</Project>
